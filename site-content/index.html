@@ -138,23 +138,36 @@ Great progress so far! In the first chapter, you successfully created a Docker c
 Great job on completing the Docker deployment with Nginx running your application! Having your application accessible via HTTPS on <a href="https://cloudsolvd.com/"><strong>cloudsolvd.com</strong></a> showcases your commitment to security and reliability. Keep up the excellent work in optimizing and enhancing your infrastructure. If you have any more questions or need further assistance, feel free to ask!  
 
 </p>
+ <h1 id="ecs_deployment">How and Why I Built This Website&#63; #4</h1>
+ <br><br>
   
+<h2>In this chapter, you will learn how to deploy a reliable cluster using ECS technologies on the AWS cloud platform.</h2>
+<p>
+If you have an important service running on an old, manually provisioned server and suddenly need to scale up without causing downtime or a clear strategy to handle the situation, this tutorial is for you. In this guide, we'll walk through creating an entire ECS cluster using CloudFormation templates, meeting all the requirements to build new infrastructure in your AWS account without relying on any preexisting services.</p>
+  
+<h2>Step 1: Rebuild your application&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</h2>
+<p>
+  You need to adapt your application for the cloud. First, create a Docker container and assess if your service relies on disk reads and writes to determine the best strategy. Decide whether to attach a disk directly to the container or, preferably, use an S3 bucket to centralize files. </p>
+
+<h2>Step 2: Create repository&nbsp;&nbsp;</h2>
+<p>You should create a ECR repository to store our container, the template is =&gt;&nbsp; <a href="https://gitlab.com/leonardompdutra/ecs-cluster-one-click/-/blob/main/ecr-repository.yml">ecr-repository.yml</a></p>
+<p>download the template to our host or put the url directly to cloudformation on aws to deploy a  repository named&nbsp;test-repository in ECR service.&nbsp; &nbsp;</p>
+<p>&nbsp;</p>
+	
+<h2>Step 3: docker build, push</h2>
+<p>Now you should create a Dockerfile with commands to build you app, docker-desktop is a good choice to help you on this way.<br>
+</p>
+<p>After you containerize your aplication, you must <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/docker-push-ecr-image.html">upload</a> it to the repository</p>
+
+	<h2>Step 4: Final Countdown</h2>
+<p>Now like we had in step 2, you must do update your cloudformation stack with <a href="https://gitlab.com/leonardompdutra/ecs-cluster-one-click/-/blob/main/ecs-template.yml">THIS.</a><br>
+</p>
+<p>If you followed all these steps, you have a complete application running on tcp port 5000 with vpc, subnets, loadbalancer, security groups, bastion host. feel free to suggest , add something, this website is open to edit on git in chapter <a href="https://github.com/leonardodutra/cloudsolvd.com.git">#1 thu merge requests.&nbsp;</a>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+	
 </div>
-  <script>
+	
 
-var xhr = new XMLHttpRequest();
-xhr.open("POST", "/postman", true);
-xhr.setRequestHeader('Content-Type', 'application/json');
-xhr.send(JSON.stringify({
-    value: 'value'
-}));
-xhr.onload = function() {
-  console.log("HELLO")
-  console.log(this.responseText);
-  var data = JSON.parse(this.responseText);
-  console.log(data);
-}
-
-</script>
 </body>
 </html
